@@ -73,7 +73,7 @@ export const VImg = defineComponent({
 
   emits: ['loadstart', 'load', 'error'],
 
-  setup (props, { emit, slots }) {
+  setup (props, { emit, slots, attrs }) {
     const currentSrc = ref('') // Set from srcset
     const image = ref<HTMLImageElement>()
     const state = ref<'idle' | 'loading' | 'loaded' | 'error'>(props.eager ? 'loading' : 'idle')
@@ -268,6 +268,7 @@ export const VImg = defineComponent({
       <VResponsive
         class={[
           'v-img',
+          attrs.class,
           { 'v-img--booting': !isBooted.value },
         ]}
         style={{ width: convertToUnit(props.width === 'auto' ? naturalWidth.value : props.width) }}
